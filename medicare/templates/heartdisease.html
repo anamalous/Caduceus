@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Disease Stats</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding-right: 300px;
+      padding-left: 300px;
+      background-color: #5491d0;
+      color: white;
+    }
+    hr{
+      background-color: #5491d0;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    label {
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #address{
+      width: 25%;
+      height: 40%;
+    }
+    input[type="number"] {
+      width: 80px;
+    }
+    .contact-container {
+      display: flex;
+      align-items: center;
+    }
+    #country_code {
+      margin-left: 10px;
+    }
+    fieldset {
+      width: 30%;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    fieldset legend {
+      font-weight: bold;
+      padding: 0 5px;
+    }
+    button {
+      background-color: white;
+      color: #5491d0;
+      width: 20%;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .div1{
+      display: flex;
+      flex-direction: row;
+      margin-right: 90px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Health Survey</h2>
+  <hr>
+  <form action="heartassess/" method="POST">
+    <div class="form-field">
+      <label for="HighBP">High Blood Pressure:</label>
+      <select id="HighBP" name="HighBP">
+        <option value="">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="HighChol">High Cholesterol:</label>
+      <select id="HighChol" name="HighChol">
+        <option value="">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="CholCheck">Cholesterol Check:</label>
+      <select id="CholCheck" name="CholCheck">
+        <option value="">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="Smoker">Smoker:</label>
+      <select id="Smoker" name="Smoker">
+        <option value="">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="Stroke">Stroke:</label>
+      <select id="Stroke" name="Stroke">
+        <option value="">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="Diabetes">Diabetes:</label>
+      <select id="Diabetes" name="Diabetes">
+        <option value="">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <button type="submit">Analyse</button>
+    </form>
+  </body>
+</html>

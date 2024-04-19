@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Booking Form</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #5491d0;
+  color: white;
+}
+
+.container {
+    color: #000;
+  width: 60%; /* Confine form to 60% of page width */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+select, input[type="text"], input[type="time"],input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+input[type="time"],input[type="date"] {
+    width: 98%;
+}
+
+input[type="date"]::-webkit-datetime-picker-indicator {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="submit"] {
+  background-color: #5491d0;
+  color: #fff;
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Book Your Appointment</h1>
+  <div class="container">
+  <form action="addingapt/" method="post">
+    <label for="patientid">Patient:</label>
+      <select name="patientid" id="patientid" required>
+      <option value="0">Select Patient</option>
+      {% for id,name in patients.items %}
+        <option value="{{ id }}">{{ name }}</option>
+      {% endfor %}
+    </select>
+    <a href="/admin/newpatient/">add a patient</a>
+    <br><br>
+  
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+    <script>
+      const dateInput = document.getElementById("date");
+      dateInput.min = new Date().toISOString().slice(0, 10); // Set minimum date to today
+    </script>
+
+    <label for="timeslot">Time Slot:</label>
+    <input type="time" id="timeslot" name="timeslot" min="09:00:00" max="17:00:00">
+    <br><br>
+
+    <label for="surgtype" id="surgtype-label" >Surgery Type:</label>
+    <select id="surgtype" name="surgtype" required>
+      <option value="">Select Surgery Type</option>
+      {% for i in surgtype %}
+      <option value="{{ i }}">{{ i }}</option>
+      {% endfor %}
+      </select>
+
+    
+    <br><br>
+
+    <input type="submit" value="Book Appointment"></input>
+  </form>
+</div>
+</body>
+</html>

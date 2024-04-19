@@ -1,0 +1,34 @@
+{% load static %}  
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+        <script>
+            const navLinks = document.querySelectorAll("#home-link, #about-link, #contact-link");
+
+navLinks.forEach(link => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const targetSection = document.getElementById(event.target.href.slice(1));
+    const mainSections = document.querySelectorAll("main > div");
+    mainSections.forEach(section => section.hidden = true);
+    targetSection.hidden = false;
+  });
+});
+
+
+        </script>
+    </head>
+</html><nav>
+    <ul>
+      <li><a href="#home" class="home-icon">Home</a></li>
+      <li><a href="#about" class="about-icon">About</a></li>
+      <li><a href="#contact" class="contact-icon">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <div id="home">Home content</div>
+    <div id="about" hidden>About content</div>
+    <div id="contact" hidden>Contact content</div>
+  </main>
+  

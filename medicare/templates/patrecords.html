@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patients Under Care</title>
+  
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>Appointment History</th>
+        <th>Report</th>
+      </tr>
+      {% for i in patients %}
+      <tr>
+        <td>{{ i.0 }}</td>
+        <td>{{ i.1 }}</td>
+        <td>
+          <div class="dropdown">
+            <button class="details">Past Appointments</button>
+            <div class="dropdown-content">
+              <ul>
+                {% for j in i.2 %}
+                  {{ j }}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button class="upload" onclick="window.location.href='/doctor/repupload/{{ i.0 }}'">Upload</button>
+          <button class="view" onclick="window.location.href='/doctor/viewreps/{{ i.0 }}'">Past Reports</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </thead>
+    <tbody>
+      </tbody>
+  </table>
+  
+</body>
+<style>
+    body {
+  font-family: sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #add8e6; /* Light background color */
+}
+
+table {
+    background-color: #f5f5f5;
+  width: 90%;
+  margin: 20px auto; /* Center table horizontally */
+  border-collapse: collapse;
+  background-color: #fff; /* White background for the table */
+  border-radius: 5px; /* Add rounded corners for the table */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
+  padding: 20px;
+}
+
+th, td {
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 16px;
+  color: #333; /* Text color */
+}
+
+th {
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ddd; /* Subtle bottom border for headers */
+}
+
+td {
+  border: none; /* Remove table cell borders */
+}
+
+.dropdown {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+.dropdown-content {
+    padding: 0 10px 0 0 ;
+  display: none;
+  position: absolute;
+  background-color: #fff; /* White background for dropdown */
+  min-width: 160px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for dropdown */
+  z-index: 1;
+  border-radius: 5px; /* Add rounded corners for dropdown */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.upload,.details,.view{
+  background-color: #5491d0; /* Green color for buttons */
+  color: white;
+  padding: 8px 15px; /* Adjust button padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 14px; /* Adjust button font size */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.details:hover,
+.edit:hover {
+  background-color: #3e8e41;
+}
+
+</style>
+</html>

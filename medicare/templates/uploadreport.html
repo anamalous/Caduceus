@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload and OCR</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: sans-serif;
+      background-color: #f5f5f5; /* Light background color */
+    }
+
+    .container {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center; /* Center panels horizontally */
+    }
+
+    .upload-panel,
+    .image-panel {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 5px; /* Add rounded corners for panels */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for panels */
+      margin: 10px; /* Add spacing between panels */
+    }
+
+    .upload-panel {
+      border-right: none; /* Remove border between panels */
+    }
+
+    .image-panel {
+      text-align: center;
+    }
+
+    .image {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 5px;
+      /* Remove shadow as panels already have shadow */
+    }
+
+    .ocr-content {
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+
+    /* Style variations for different button types */
+    .button{
+      margin: 5px;
+      display: inline-block; /* Allow buttons to sit side-by-side */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s ease-in-out; /* Add hover effect */
+    }
+
+    .button:hover {
+      background-color: #ddd; /* Lighten button background on hover */
+    }
+
+    .button.primary {
+      background-color: #3f51b5; /* Primary button (blue) */
+      color: white;
+    }
+
+    .button.secondary {
+      background-color: #eee; /* Secondary button (light gray) */
+      color: #333;
+    }
+
+    .text-area {
+      width: 100%;
+      height: 200px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: sans-serif;
+      resize: none;
+    }
+
+    /* Custom File Input Styles */
+    #file-input {
+      display: none; /* Hide the default file input */
+    }
+
+    #file-label {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #eee;
+      color: #333;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    }
+
+    #file-label:hover {
+      background-color: #ddd; /* Lighten on hover */
+    }
+  </style>
+</head>
+<body>
+  <form action="uploading/" method="post" enctype="multipart/form-data">
+    {{ form.as_p }}
+  <div class="container">
+    <div class="upload-panel">
+      <h2>Upload  Report</h2>
+      <div class="upload-section">
+        <input type="file" name="report" id="mri-upload" accept="image/*" style="display: none;"> <label for="mri-upload" id="mri-label">Find Document</label> <br>
+        <img id="mri-preview" src="" alt="Uploaded MRI Scan" style="display: none; max-width: 70%;">
+      <br>
+    </div>
+    </div>
+    <div class="image-panel">
+      <h2>Add Comments</h2>
+      
+        <textarea id="text-area" name="comments" class="text-area"></textarea>
+        
+      <br>
+      <select name="pid" id="pid">
+        <option value="0">Select Type</option>
+        {% for id,name in patients.items %}
+          <option value="{{ id }}">{{ name }}</option>
+        {% endfor %}
+      </select>
+      
+      <input class="primary button" type="submit" value="Upload"><br>
+
+    </div>
+  </div>
+  </form>
+  <script>
+    function setfollow(){
+      d=document.getElementsByName("apptfollowup");
+      d.value=1;
+    }
+    const mriUpload = document.getElementById("mri-upload");
+    const mriPreview = document.getElementById("mri-preview");
+    const textArea=document.getElementById("text-area");
+    const mriPreviewButton = document.getElementById("mri-preview-button");
+    const textAreaContainer=document.getElementById("text-area-container");
+
+    const displayPreview = (input, previewImage, previewButton) => {
+      const file = input.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImage.src = e.target.result;
+          previewImage.style.display = "block";
+          // Enable preview button after image load
+        };
+        reader.readAsDataURL(file);
+        // Enable analyze button on image upload only after both MRI and filter are uploaded
+        analyzeButton.disabled = !(mriUpload.files.length > 0 && filterUpload.files.length > 0);
+      } else {
+        previewImage.src = "";
+        previewImage.style.display = "none";
+        // Disable analyze button if no MRI or filter is uploaded
+        analyzeButton.disabled = true;
+      }
+    };
+    mriUpload.addEventListener("change", () => displayPreview(mriUpload, mriPreview, mriPreviewButton));
+    mriPreviewButton.addEventListener("click", () => displayPreview(mriUpload, mriPreview, mriPreviewButton));
+
+
+  </script>
+</body>
+</html>

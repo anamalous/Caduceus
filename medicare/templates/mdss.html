@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #5491d0; /* Set background color */
+        }
+
+        .main-content {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Three columns */
+            grid-gap: 80px; /* Adjust gap size for spacing */
+            text-align: center;
+        }
+
+        .tile {
+            width: 80%; /* Ensure tiles fill available space */
+            height: 100%;
+            background-color: white; /* Set tile background color */
+            padding: 20px;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Add rounded corners */
+            transition: transform 0.2s ease-in-out; /* Add hover effect */
+            display: flex; /* Allow for image and text alignment */
+            flex-direction: column; /* Stack image and text vertically */
+            align-items: center; /* Center content horizontally */
+            justify-content: space-between; /* Align content at top and bottom */
+        }
+
+        .tile:hover {
+            transform: scale(1.02); /* Slight scale on hover for emphasis */
+        }
+
+        .tile img {
+            width: 80px; /* Adjust image size as needed */
+            height: 80px; /* Adjust image size as needed */
+            object-fit: cover; /* Ensure image covers available space */
+        }
+
+        .tile h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333; /* Text color */
+        }
+    </style>
+</head>
+<body>
+    <main class="main-content">
+        <div class="tile">
+            <img src="../../static/assets/heart.png" alt="Doctor Icon" onclick="window.location.href='heartdisease/'"> <h3>Heart health</h3>
+        </div>
+        <div class="tile">
+            <img src="../../static/assets/diabetes.png" alt="Chart Icon" onclick="window.location.href='diabetes/'"> <h3>Diabetes Indicator</h3>
+        </div>
+        
+    </main>
+</body>
+</html>

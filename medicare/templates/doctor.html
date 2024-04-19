@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      flex-direction: column;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #5491d0; /* Set background color */
+    }
+    .header {
+      background-color: #2e6ba9; /* Set navbar color */
+      color: white; /* Navbar text color */
+      padding: 10px;
+      display: flex;
+      justify-content: space-between; /* Align items horizontally */
+      align-items: center;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow */
+      position: fixed; /* Fix header to top */
+      top: 0; /* Align to top of the page */
+      width: 100%; /* Set header width to 100% */
+      z-index: 10; /* Set stacking order to appear above*/
+      
+    }
+
+    .header h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-info img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; /* Round user image */
+      margin-right: 10px;
+    }
+
+    .sign-out {
+      background-color: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      text-decoration: none; /* Remove underline from button */
+    }
+
+    .main-content {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Three columns */
+      grid-gap: 80px; /* Adjust gap size for spacing */
+      text-align: center;
+    }
+
+    .tile {
+      width: 80%; /* Ensure tiles fill available space */
+      height: 100%;
+      background-color: white; /* Set tile background color */
+      padding: 20px;
+      cursor: pointer;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 10px; /* Add rounded corners */
+      transition: transform 0.2s ease-in-out; /* Add hover effect */
+      display: flex; /* Allow for image and text alignment */
+      flex-direction: column; /* Stack image and text vertically */
+      align-items: center; /* Center content horizontally */
+      justify-content: space-between; /* Align content at top and bottom */
+    }
+
+    .tile:hover {
+      transform: scale(1.02); /* Slight scale on hover for emphasis */
+    }
+
+    .tile img {
+      width: 80px; /* Adjust image size as needed */
+      height: 80px; /* Adjust image size as needed */
+      object-fit: cover; /* Ensure image covers available space */
+    }
+
+    .tile h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333; /* Text color */
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+  <h1 style="padding: 10px;">Doctor Dashboard</h1>
+  <div class="user-info">
+    <span>{{ user }}</span> </div>
+  <button class="sign-out" style="padding: 10px;" onclick="window.location.href='loggingout/'">Sign Out</button>
+</header>
+
+  <main class="main-content">
+    <div class="tile">
+      <img src="../static/assets/patients.png" alt="Patients Icon" onclick="window.location.href='patrecords/'"> <h3>Your Patients</h3>
+    </div>
+    <div class="tile">
+      <img src="../static/assets/drugdb.png" alt="Scan Analysis Icon" onclick="window.location.href='drugdb/'"> <h3>Medical Ease</h3>
+    </div>
+    <div class="tile">
+      <img src="../static/assets/heart.png" alt="MDSS Icon" onclick="window.location.href='heartdisease/'"> <h3>Heart Health</h3>
+    </div>
+    <div class="tile">
+      <img src="../static/assets/dosage.png" alt="Dosage and Control Icon" onclick="window.location.href='dosage/'"> <h3>Dosage & Control</h3>
+    </div>
+    <div class="tile">
+      <img src="../static/assets/calendar.png" alt="Calendar Icon" onclick="window.location.href='sched/'"> <h3>My Schedule</h3>
+    </div>
+    <div class="tile">
+      <img src="../static/assets/report.png" alt="Report Icon" onclick="window.location.href='repupl/'"> <h3>Upload Report</h3>
+    </div>
+  </main>
+</body>
+</html>

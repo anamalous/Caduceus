@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surgery Schedule</title>
+  <style>
+    body{
+        background-color: #5491d0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 95%;
+      margin: 10px auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+    .completed {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
+    /* New styles for enhanced look */
+    table {
+    margin: 2%;
+      background-color: #fff;
+      font-family: sans-serif;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      background-color: #f5f5f5;
+    }
+    th {
+        text-align: left;
+      background-color: #fff4bc;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #fbfbfb;
+    }
+    td:first-child {
+      border-radius: 10px 0 0 10px;
+    }
+    td:last-child {
+      border-radius: 0 10px 10px 0;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-container input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="color: white;font-family: sans-serif;">Today's Surgery Schedule</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Operating Theatre</th>
+        <th>Doctor</th>
+        <th>Surgery</th>
+        <th>Patient Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for value in sched %}
+      <tr>
+        <td>{{ value.0 }}:00</td>
+        <td> {{ value.1 }}</td>
+        <td>Dr. {{ value.3 }}</td>
+        <td>{{ value.4}}</td>
+        <td> {{ value.5 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
